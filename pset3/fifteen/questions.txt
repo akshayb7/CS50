@@ -1,0 +1,4 @@
+0. The game allows any dimensions of d x d, with the value of d belonging to the range [3,9].
+1. The games booard is represented by a two-dimensional array.
+2. void greet(void) is used to greet the player at the start of the game.
+3. We need to implement the init, draw, move and won functions.

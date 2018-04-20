@@ -1,0 +1,12 @@
+1.  stdint.h is a header file in the C standard library that allows for better code portability when working with machines of different capabilities. It helps declare sets of integer types having specific width, i.e. the number of bits used to store its value. Example: int16_t, uint64_t.
+2.  It makes clear the amount of space a particular varible in a file should take. This can particularly come in handy when working with files such as Bitmaps as the header files have a standard of the number of bytes it can take.
+3.  A BYTE is 1 byte, a DWORD is 4 bytes, a LONG is 4 bytes, and a WORD is 2 bytes.
+4.  The first two bytes in a BMP file is set to BM(in ASCII) or 0x42 0x4D(in Hexadeceimal). It is coreponding to the WORD datatype defined and is used to represent the bfType, which specifies the file type.
+5.  bfsize is the size of the bitmap file, including the size of the headers, whereas, bisize is the size in bytes of the structure BITMAPINFOHEADER.
+6.  If biHeight is negative, the btmap is a top-down DIB (device-independent bitmap) and its origin is the upper left corner.
+7.  The biBitCount member of the BITMAPINFOHEADER determines the number of bits that define each pixels.
+8.  fopen will return NULL values if it can't find the file mentioned in the line 24 to read. It will also return NULL if it can't create the file to write as mentioned in the line 32. This may happen if it doesn't have access or proper permissions to do so.
+9.  The fread command has always been used to read pre-defined structs in the program. The third argument is always 1 in the code as we want to read the structs one at a time. For example, we want to read the RGBTRIPLE one at a time so as to make the sense of it's value for a single pixel.
+10. If bi.biWidth is 3, then (bi.biWidth * sizeof(RGBTRIPLE)) becomes 3 * 3 = 9, which when modulo by 4 gives 1, hence (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) becomes 3. After using modulo by 4 again, the value of padding will then be 3.
+11. fseek allows us to change the location of the file pointer as per the offset provided. The offset can be both positive or negative.
+12. An integer constant which when used as the whence argument to the fseek function, specifies that the offset provided is in refernece with the current location of the file pointer.

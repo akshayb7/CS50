@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+
+from analyzer import Analyzer
+import helpers
+from termcolor import colored
+
+def main():
+    if len(sys.argv) != 2:
+        sys.exit("Usage: ./tweets twitterHandle")
+
+    positives = os.path.join(sys.path[0], "positive-words.txt")
+    negatives = os.path.join(sys.path[0], "negative-words.txt")
+
+    analyzer = Analyzer(positives, negatives)
+
+    screen_name = sys.argv[1].strip('@')
+
+    tweets = helpers.get_user_timeline(screen_name, 50)
+
+    if tweets == None:
+        sys.exit("User is private or doesn't exist")
+
+    for tweet in tweets:
+        score = analyzer.analyze(tweet)
+        color = "green" if score > 0.0 else "red" if score < 0.0 else "yellow"
+        print(colored("{} {}".format(score, tweet), color))
+
+if __name__ == "__main__":
+    main()
